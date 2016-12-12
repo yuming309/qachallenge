@@ -1,0 +1,23 @@
+Test Description:
+  - This test case is to verify that it is able to delete a todo item on Todo Application (http://todomvc.com/examples/angular2/).
+  - Tests should be run with FireFox/Chrome/IE.
+  
+  Preconditions:
+  - The list of todos has at least one item created.
+  
+  Test Steps:
+  1. Browse to http://todomvc.com/examples/angular2/
+      Expected Result: See todos with an input field with a label "What needs to be done?" and at least one item shows up.
+                      A checkbox displays on the input field in front of the label "What needs to be done?"
+                      A checkbox displays on each item of the list
+                      The number of "item left" matches the number of items showing up.
+                      
+  2. Move the mouse cursor over one item.
+     Expected Result: A deleting mark "X" shows up on the right of the row of the item while the cursor moves over the item.
+     
+  3. Click the "X" of the item.
+     Expected Result: A deletion confirm window should show up to confirm the deletion.
+     
+  4. Confirm the deletion.
+     Expected Result: The item is deleted and the number of item decreases by 1.
+     
