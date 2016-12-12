@@ -1,0 +1,20 @@
+Test Description:
+  - This test case is to verify that it is able to create/add a new todo item on Todo Application (http://todomvc.com/examples/angular2/),
+    while there are items existing. 
+  - Tests should be run with FireFox/Chrome/IE.
+  
+  Preconditions:
+  - The list of todos has at least one item existing.
+  
+  Test Steps:
+  1. Browse to http://todomvc.com/examples/angular2/
+     Expected Result: See todos with an input field with a label "What needs to be done?" and at least one item shows up.
+                      A checkbox displays on the input field in front of the label "What needs to be done?"
+  
+  2. Click the input filed.
+     Expected Result: The cursor is blinking on the input field.
+     
+  3. Type an todo item into the input field then press Enter.
+     Expected Result: The item is added to the end of the todos list and a checkbox shows up in front of the item. 
+                      The number of "item left" is increased by 1.
+     
