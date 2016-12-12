@@ -15,3 +15,4 @@
   3. Type an todo item into the input field, such as "1. The first thing to do: write the test plan." then press Enter.
      Expected Result: "1. The first thing to do: write the test plan." is added to the below of the input field and a checkbox shows up
                       in front of it. A checkbox displays on the input field in front of the label "What needs to be done?"
+                      A foot-note shows up as "1 item left" at the bottom 
