@@ -19,3 +19,5 @@ Test Description:
      
   4. Press Enter to save the change.
      Expected Result: The edition displays and the number of "item left" keeps the same number.
+     
+     Note: It is possible to leave blank for the item.
