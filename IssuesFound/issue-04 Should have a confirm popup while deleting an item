@@ -14,3 +14,4 @@ Step to reproduce:
    Expected Result: A deletion confirm window should show up to confirm the deletion.
    
 In the step 4, the deletion is executed immediately.
+Also while checking checkbox to delete an item, a deletion confirm window should show up.
