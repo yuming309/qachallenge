@@ -19,5 +19,5 @@ Test Description:
      Expected Result: A deletion confirm window should show up to confirm the deletion.
      
   4. Confirm the deletion.
-     Expected Result: The item is deleted and the number of item decreases by 1.
+     Expected Result: The item is deleted and the number of "item left" decreases by 1.
      
