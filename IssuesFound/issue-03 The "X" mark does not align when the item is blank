@@ -1,0 +1,14 @@
+Description: 
+  With blank todos items, the deleting mark "X" does not align with the row of the item.
+  
+Step to reproduce:
+1. Browse to http://todomvc.com/examples/angular2/
+      
+2. Add some items.
+      
+3. Make an item blank by double clicks the item and remove the string.
+  
+4. Move the mouse cursor over the blank item to display the deleting mark "X".
+   Expected Result: "X" should be aligned with the row of the blank item.
+   
+In the step 4. The "X" does not align.
