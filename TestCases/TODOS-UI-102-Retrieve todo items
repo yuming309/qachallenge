@@ -1,0 +1,36 @@
+Test Description:
+  - This test case is to verify that without cleaning cache of the browser it is able to retrieve the created todo items on
+    http://todomvc.com/examples/angular2/
+  - Tests should be run with FireFox/Chrome/IE.
+  
+  Preconditions:
+  - The list of todos has at least one item created.
+  - Shut the browser
+  
+  Test Steps:
+  1. Launch the browser and browse to http://todomvc.com/examples/angular2/
+     Expected Result: See todos with an input field with a label "What needs to be done?".
+                      A checkbox displays on the input field in front of the label "What needs to be done?"
+                      A checkbox displays on each item of the list.
+                      The items show up as the same as the previous ones before the browser closed.
+                      The number of "item left" matches the number of items showing up.
+  
+  2. Double clicks one of the existing item on the list.
+     Expected Result: The item becomes editable.
+     
+  3. Edit the item with replacing the string and adding new strings.
+     Expected Result: The edition works.
+     
+  4. Press Enter to save the change.
+     Expected Result: The edition displays and the number of "item left" keeps the same number.
+     
+  5. Close the browser and make sure not to clean up the cache (cookies and other site data) of the browser
+     Expected Result: The browser is closed.
+     
+  6. Launch the browser and browse to http://todomvc.com/examples/angular2/
+     Expected Result: See todos with an input field with a label "What needs to be done?".
+                      A checkbox displays on the input field in front of the label "What needs to be done?"
+                      A checkbox displays on each item of the list.
+                      The items show up as the same as the previous ones before the browser closed.
+                      The number of "item left" matches the number of items showing up.
+   
