@@ -13,5 +13,5 @@
      Expected Result: The cursor is blinking on the input field.
      
   3. Type an todo item into the input field, such as "1. The first thing to do: write the test plan." then press Enter.
-     Expected Result: 1. The first thing to do: write the test plan. is added to the below of the input field and a checkbox shows up
+     Expected Result: "1. The first thing to do: write the test plan." is added to the below of the input field and a checkbox shows up
                       in front of it. A checkbox displays on the input field in front of the label "What needs to be done?"
