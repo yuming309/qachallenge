@@ -10,6 +10,7 @@ Test Description:
   1. Browse to http://todomvc.com/examples/angular2/
      Expected Result: See todos with an input field with a label "What needs to be done?" and at least one item shows up.
                       A checkbox displays on the input field in front of the label "What needs to be done?"
+                      A checkbox displays on each item of the list
   
   2. Click the input filed.
      Expected Result: The cursor is blinking on the input field.
