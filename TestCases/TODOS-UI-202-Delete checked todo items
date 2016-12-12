@@ -1,0 +1,58 @@
+Test Description:
+  - This test case is to verify that it is able to delete the checked todo items on Todo Application (http://todomvc.com/examples/angular2/).
+  - Tests should be run with FireFox/Chrome/IE.
+  
+  Preconditions:
+  - The list of todos has at least 7 items created.
+  
+  Test Steps:
+  1. Browse to http://todomvc.com/examples/angular2/
+      Expected Result:See todos with an input field with a label "What needs to be done?" and at least 7 items show up.
+                      A checkbox displays on the input field in front of the label "What needs to be done?"
+                      A checkbox displays on each item of the list.
+                      The number of "item left" matches the number of items showing up.
+                      
+  2. Check the checkbox of one item.
+     Expected Result: The checkbox is checked of the item, a line cross the string of the item, and the string grey-out.
+                      "Clear completed" shows up on the bottom right and the number of "item left" is decreased by 1.
+     
+  3. Click "Clear completed".
+     Expected Result: A deletion confirm window should show up to confirm the deletion.
+     
+  4. Confirm the deletion.
+     Expected Result: The checked item is deleted.
+                      "Clear completed" disappears and the number of "item left" is the same as the step 2.
+     
+  5. Check the checkboxes of two items.
+     Expected Result: The checkboxes are checked, a line cross the string of each item, and the string grey-out.
+                      "Clear completed" shows up on the bottom right and the number of "item left" is decreased by 2..
+     
+  6. Click "Clear completed".
+     Expected Result: A deletion confirm window should show up to confirm the deletion.
+     
+  7. Confirm the deletion.
+     Expected Result: The two checked items are deleted.
+                      "Clear completed" disappears and the number of "item left" is the same as the step 5.
+     
+  8. Check the checkbox of the input field.
+     Expected Result: The checkboxes of all items are checked, a line cross the string of each item, and the string grey-out.
+                      "Clear completed" shows up on the bottom right and the number of "item left" is 0.
+     
+  
+  9. Click the checkboxes of two items.
+     Expected Result: The checkoxes are unchecked.
+                      "Clear completed" shows up on the bottom right.
+                      The number of "item left" is increased by 1 after one checkbox unchecked.
+                      The cross line and grey-out on the string of the unchecked item disappear.
+  
+  10. Check the checkbox of the input field.
+     Expected Result: The checkboxes of all items are checked, a line cross the string of each item, and the string grey-out.
+                      "Clear completed" shows up on the bottom right and the number of "item left" is 0.
+  
+  11. Click "Clear completed".
+     Expected Result: A deletion confirm window should show up to confirm the deletion.
+     
+  12. Confirm the deletion.
+     Expected Result: The all checked items are deleted and the number of "item left" turns to 0.
+                      "Clear completed" disappears.
+     
