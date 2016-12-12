@@ -1,0 +1,9 @@
+Description: 
+  While using IE Version 10.0.9200.16750, the web page http://todomvc.com/examples/angular2/ does not display properly.
+  The input field does not show up and GET /examples/angular2/node_modules/systemjs/dist/system-polyfills.js shows 404.
+  
+Step to reproduce:
+1. Browse to http://todomvc.com/examples/angular2/
+   Expected Result: See todos with an input field with a label "What needs to be done?"
+   
+The input field does not show up.
