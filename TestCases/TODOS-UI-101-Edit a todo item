@@ -1,0 +1,21 @@
+Test Description:
+  - This test case is to verify that it is able to edit a todo item on Todo Application (http://todomvc.com/examples/angular2/).
+  - Tests should be run with FireFox/Chrome/IE.
+  
+  Preconditions:
+  - The list of todos has at least one item created.
+  
+  Test Steps:
+  1. Browse to http://todomvc.com/examples/angular2/
+      Expected Result: See todos with an input field with a label "What needs to be done?" and at least one item shows up.
+                      A checkbox displays on the input field in front of the label "What needs to be done?"
+                      A checkbox displays on each item of the list
+  
+  2. Double clicks one of the existing item on the list.
+     Expected Result: The item becomes editable.
+     
+  3. Edit the item with replacing the string and adding new strings.
+     Expected Result: The edition works.
+     
+  4. Press Enter to save the change.
+     Expected Result: The edition displays and the number of "item left" keeps the same number.
