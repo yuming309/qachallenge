@@ -1,0 +1,16 @@
+Description: 
+ While deleting an item by clicking "X", there is no confirm window/popup to confirm the deletion.
+ For a destructive behavior, it should provide a confirmation window to avoid an accident happening.
+ 
+Step to reproduce:
+1. Browse to http://todomvc.com/examples/angular2/
+      
+2. Add some items.
+      
+3. Move the mouse cursor over one item to display the deleting mark "X".
+   Expected Result: "X" shows up on the row of the item.
+   
+4. Click the "X" to delete the item.
+   Expected Result: A deletion confirm window should show up to confirm the deletion.
+   
+In the step 4, the deletion is executed immediately.
