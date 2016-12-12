@@ -1,0 +1,14 @@
+Description: 
+  While using Chrome Version 54.0.2840.99 m, after adding a new todo item, the input field shows an arrow symbol instead of a checkbox,
+  and the newly created item has a radio button-like checkbox which should be a regular checkbox.
+  
+Step to reproduce:
+1. Browse to http://todomvc.com/examples/angular2/
+2. Click the input filed.
+3. Type an todo item into the input field, such as "test 1" then press Enter.
+   Expected Result: 1. The first thing to do: write the test plan. is added to the below of the input field and a checkbox shows up
+                    in front of it. A checkbox displays on the input field in front of the label "What needs to be done?"
+                    
+In the step 3, a checkbox is supposed to show up in front of the input field, however a down-sided arrow symbol shows up.
+Also the newly added item has a radio-button like checkbox showing up which is not compatible of regular UI requirement and 
+it should be changed to a square checkbox.
