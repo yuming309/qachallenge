@@ -1,0 +1,9 @@
+Description: 
+ While deleting an item by checking the checkbox, there displays "Clear completed" and by clicking it, the checked items deleted.
+ However this string "Clear completed" does not describe its fuction properly.
+ Suggest to change it to "Remove the checked items" or "Delete the checked items".
+ 
+Step to reproduce:
+1. Browse to http://todomvc.com/examples/angular2/
+      
+2. Check the checkbox of one item - "Clear completed" shows up on the bottom right.   
