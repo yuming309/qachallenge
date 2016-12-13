@@ -1,0 +1,29 @@
+package com.ymc.todos.pages
+
+import geb.Module
+
+/**
+ * Created by Roy on 12/13/2016.
+ */
+class TodoItemModal extends Module {
+
+    static  content = {
+        itemCheckbox    {$("input", type:"checkbox")}
+        itemLabel       {$("label")}
+        itemDestroyButton {$("button", class:"destroy")}
+    }
+
+    def selectItem(){
+        itemCheckbox.click()
+    }
+
+    def String getItemLabel(){
+        return itemLabel.text()
+    }
+
+    def deleteItem(){
+        waitFor{itemDestroyButton.displayed}
+        itemDestroyButton.click()
+    }
+
+}
