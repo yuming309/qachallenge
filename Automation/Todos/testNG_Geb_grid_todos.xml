@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Suite1"  parallel="tests" thread-count="5">
+    <test name="test1">
+        <parameter name="browser" value="ff"/>
+        <parameter name="nodeUrl" value="http://localhost:5551"/>
+        <parameter name="webSite" value="http://todomvc.com/examples/angular2/"/>
+        <classes>
+            <class name="com.ymc.todos.tests.GebTodosTest"></class>
+        </classes>
+    </test>
+    <test name="test2">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="nodeUrl" value="http://localhost:5552"/>
+        <parameter name="webSite" value="http://todomvc.com/examples/angular2/"/>
+        <classes>
+            <class name="com.ymc.todos.tests.GebTodosTest"></class>
+        </classes>
+    </test>
+    <test name="test3">
+        <parameter name="browser" value="ie"/>
+        <parameter name="nodeUrl" value="http://localhost:5553"/>
+        <parameter name="webSite" value="http://todomvc.com/examples/angular2/"/>
+        <classes>
+            <class name="com.ymc.todos.tests.GebTodosTest"></class>
+        </classes>
+    </test>
+</suite>
