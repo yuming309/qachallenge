@@ -1,0 +1,101 @@
+package com.ymc.todos.tests
+
+import com.ymc.logger.CustomLogger
+import com.ymc.todos.pages.TodosPage
+import org.apache.log4j.Logger
+import org.junit.Assert
+
+import org.testng.annotations.Parameters
+import org.testng.annotations.Test
+
+/**
+ * Created by ymc on 12/12/2016.
+ */
+class GebTodosTest extends GebBaseTest {
+    protected CustomLogger logger =  new CustomLogger(Logger.getLogger(getClass().getName() ))
+    protected String test1 = "test1"
+    protected String test2 = "test2"
+    protected String test3 = "test3"
+    protected String test4 = "test4"
+    protected String test5 = "test5"
+    protected String test6 = "test6"
+    protected String test7 = "test7"
+
+    protected void oneTimeSetup(){}
+    protected void oneTimeTearDown(){}
+    protected void setUp(){}
+    protected void cleanUp(){
+        browserGeb.to TodosPage
+        logger.debug("Clear up all todo items.")
+        browserGeb.at(TodosPage).clearCompleted()
+        Assert.assertTrue(browserGeb.at(TodosPage).getTodosNum() == 0)
+    }
+
+    @Parameters(["browser",  "nodeUrl"])
+    @Test(groups = "Creation")
+    void todoCreateOneItemTest(String browser, String nodeUrl) {
+        String nodeX = nodeUrl.substring(Math.max(nodeUrl.length() - 2, 0))
+        String browserNode = browser+nodeX
+        logger.debug("run test on " + browserNode)
+        browserGeb.to TodosPage
+        logger.debug("title: " + browserGeb.title)
+
+        logger.debug("Verify the todo item number is 0.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemNum() == '0')
+        logger.debug("Create one todo with string test1.")
+        browserGeb.at(TodosPage).addOneItem(test1)
+        logger.debug("Verify the todo item shows up.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test1) != null)
+        logger.debug("Verify the todo item number increased by 1.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getTodosNum() == 1)
+    }
+
+    @Parameters(["browser",  "nodeUrl"])
+    @Test(groups = "Creation")
+    void todoCreateMultiItemsTest(String browser, String nodeUrl) {
+        String nodeX = nodeUrl.substring(Math.max(nodeUrl.length() - 2, 0))
+        String browserNode = browser+nodeX
+        logger.debug("run test on " + browserNode)
+        browserGeb.to TodosPage
+        logger.debug("title: " + browserGeb.title)
+
+        logger.debug("Verify the todo item number is 0.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemNum() == '0')
+        logger.debug("Create one todo with string test1.")
+        browserGeb.at(TodosPage).addOneItem(test1)
+        logger.debug("Verify the todo item shows up.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test1) != null)
+        logger.debug("Verify the todo item number increased by 1.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getTodosNum() == 1)
+        logger.debug("Create the second todo with string test2.")
+        browserGeb.at(TodosPage).addOneItem(test2)
+        logger.debug("Verify the todo item shows up.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test2) != null)
+        logger.debug("Verify the todo item number increased by 1.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getTodosNum() == 2)
+    }
+
+    @Parameters(["browser",  "nodeUrl"])
+    @Test(groups = "Edition")
+    void todoEditItemTest(String browser, String nodeUrl) {
+        String nodeX = nodeUrl.substring(Math.max(nodeUrl.length() - 2, 0))
+        String browserNode = browser+nodeX
+        logger.debug("run test on " + browserNode)
+        browserGeb.to TodosPage
+        logger.debug("title: " + browserGeb.title)
+        int todoNum
+        logger.debug("If todo item test1 not existing, create it.")
+        if (browserGeb.at(TodosPage).getItemByLabel(test1) == null){
+            logger.debug("Create one todo with string test1.")
+            browserGeb.at(TodosPage).addOneItem(test1)
+            logger.debug("Note the item number.")
+            todoNum = browserGeb.at(TodosPage).getTodosNum()
+        }
+        logger.debug("Edit the todo item test1.")
+        browserGeb.at(TodosPage).editItemByLabel(test1, test3)
+        logger.debug("Verify the todo item shows up.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test3) != null)
+        logger.debug("Verify the todo item number is the same.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getTodosNum() == todoNum)
+    }
+}
