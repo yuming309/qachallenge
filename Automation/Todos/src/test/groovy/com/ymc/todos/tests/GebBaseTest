@@ -1,0 +1,105 @@
+package com.ymc.todos.tests
+
+import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium
+import com.ymc.logger.CustomLogger
+import geb.Browser
+
+/**
+ * Created by root on 11/24/2014.
+ */
+import org.apache.log4j.Logger
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.openqa.selenium.remote.DesiredCapabilities
+import org.openqa.selenium.remote.RemoteWebDriver
+import org.testng.annotations.AfterMethod
+import org.testng.annotations.BeforeMethod
+import org.testng.annotations.Parameters
+
+class GebBaseTest {
+    protected CustomLogger logger =  new CustomLogger(Logger.getLogger(getClass().getName() ))
+
+    protected DesiredCapabilities test
+    protected String baseUrl
+    protected Browser browserGeb
+    protected String nodeX
+    protected String browserNode
+
+    @Override
+    protected void oneTimeSetup(){}
+    @Override
+    protected void oneTimeTeardown(){}
+    @Override
+    protected void setUp(){}
+    @Override
+    protected void cleanUp(){}
+
+
+    @BeforeClass
+    protected void beforeClass(){
+        oneTimeSetup()
+    }
+
+    @AfterClass
+    protected void afterClass(){
+        oneTimeTeardown()
+    }
+
+    @Parameters(["browser", "nodeUrl", "webSite"])
+    @BeforeMethod
+    public void setUp(String browser, String nodeUrl, String webSite) {
+        nodeX = nodeUrl.substring(Math.max(nodeUrl.length()-2, 0))
+        browserNode = browser+nodeX
+        baseUrl = webSite;
+
+        if (browser.equals("ie")) {
+            test = DesiredCapabilities.internetExplorer()
+            //test.getCapability(CapabilityType.TAKES_SCREENSHOT)
+        }
+        else if (browser.equals("ff")) {
+            test = DesiredCapabilities.firefox()
+            //test.getCapability(CapabilityType.TAKES_SCREENSHOT)
+            //FirefoxProfile fp = new FirefoxProfile()
+            //fp.addArguments("window-size=1024,768")
+            //test.setCapability(FirefoxDriver.PROFILE, fp)
+        }
+        else if (browser.equals("chrome")){
+            test = DesiredCapabilities.chrome()
+            //test.getCapability(CapabilityType.TAKES_SCREENSHOT)
+            //ChromeOptions options = new ChromeOptions()
+            //options.addArguments("window-size=1024,768")
+            //test.setCapability(ChromeOptions.CAPABILITY, options)
+        }
+        else {
+            logger.debug("browser parameters errors，only allow ie、 ff、chrome")
+        }
+
+        logger.info("Browser: " + browser);
+
+        String url = nodeUrl + "/wd/hub"
+        URL urlInstance = null
+
+        try {
+            urlInstance = new URL(url)
+        } catch (MalformedURLException e) {
+            e.printStackTrace()
+            logger.debug("Initialize URL with errors，verify URL format，format should be similar as：http://192.168.40.67:5555")
+        }
+        logger.debug("Setup remotewebdriver")
+        browserGeb = new Browser(driver: new RemoteWebDriver(urlInstance, test))
+        browserGeb.driver.manage().window().maximize()
+        logger.debug(browser + " Webdriver instantiated and window maximized.")
+        // logger.info("Report dir: C:\\Users\\ymc\\IdeaProjects\\Geb-Portal\\target\\Screenshots")
+        //browserGeb.config.reportsDir = new File('C:\\Users\\ymc\\IdeaProjects\\Geb-Portal\\target\\Screenshots')
+    }
+
+
+    @Parameters(["browser"])
+    @AfterMethod
+    public void quit(String browser) {
+        cleanUp()
+        browserGeb.close()
+        logger.comment(browser + " Webdriver stops.")
+    }
+
+}
