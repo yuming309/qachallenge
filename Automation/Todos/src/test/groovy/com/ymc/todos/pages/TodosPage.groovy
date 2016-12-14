@@ -61,12 +61,46 @@ class TodosPage extends Page {
         }
     }
 
-    def editItemByLabel(String oldLabel, String newLabel){
+    def boolean editItemByLabel(String oldLabel, String newLabel){
+        boolean itemEdited = false
         TodoItemModal item = getItemByLabel(oldLabel)
-        interact {
-            doubleClick(item)
-            item.value(newLabel)
+        try {
+            interact {
+                doubleClick(item)
+                item.value(newLabel)
+                itemEdited = true
+            }
+        }catch(Exception e){
+            return itemEdited
         }
+        retrun itemEdited
+    }
+
+    def boolean pickMultiItemsByLabel(String[] labels){
+        boolean itemsSelected = true
+        boolean itemSelected = false
+        for (int i = 0; i < labels.size(); i++) {
+            TodoItemModal selectedItem = getItemByLabel(labels[i])
+            try{
+                selectedItem.pickItem()
+            }catch (Exception e){
+                itemSelected = false
+                return itemSelected
+            }
+        }
+        return itemsDeleted
+    }
+
+    def boolean deletOneItemByLabel(String label){
+        boolean itemDeleted = false
+        TodoItemModal selectedItem = getItemByLabel(label)
+        selectedItem.deleteItem()
+        if (!editItemByLabel(label)){ itemDeleted = true}
+        return itemDeleted
+    }
+
+    def clikcClearCompleted(){
+        clearCompletedButton.click()
     }
 
     def boolean clearCompleted(){
