@@ -103,7 +103,7 @@ class TodosPage extends Page {
         clearCompletedButton.click()
     }
 
-    def boolean clearCompleted(){
+    def boolean deleteAllItems(){
         boolean allClean = false
         selectAllCheckboxes.click()
         clearCompletedButton.click()
