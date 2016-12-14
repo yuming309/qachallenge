@@ -2,9 +2,10 @@ package com.ymc.todos.tests
 
 import com.ymc.logger.CustomLogger
 import com.ymc.todos.pages.TodosPage
+import geb.Browser
 import org.apache.log4j.Logger
 import org.junit.Assert
-
+import org.openqa.selenium.remote.RemoteWebDriver
 import org.testng.annotations.Parameters
 import org.testng.annotations.Test
 
@@ -92,10 +93,110 @@ class GebTodosTest extends GebBaseTest {
             todoNum = browserGeb.at(TodosPage).getTodosNum()
         }
         logger.debug("Edit the todo item test1.")
-        browserGeb.at(TodosPage).editItemByLabel(test1, test3)
+        Assert.assertTrue(browserGeb.at(TodosPage).editItemByLabel(test1, test3))
         logger.debug("Verify the todo item shows up.")
         Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test3) != null)
         logger.debug("Verify the todo item number is the same.")
         Assert.assertTrue(browserGeb.at(TodosPage).getTodosNum() == todoNum)
+    }
+
+    @Parameters(["browser",  "nodeUrl"])
+    @Test(groups = "Edition")
+    void todoEditItemsTest(String browser, String nodeUrl) {
+        String nodeX = nodeUrl.substring(Math.max(nodeUrl.length() - 2, 0))
+        String browserNode = browser+nodeX
+        URL urlInstance = null
+        logger.debug("run test on " + browserNode)
+        browserGeb.to TodosPage
+        logger.debug("title: " + browserGeb.title)
+        int todoNum
+        logger.debug("If todo item test1 not existing, create it.")
+        if (browserGeb.at(TodosPage).getItemByLabel(test1) == null){
+            logger.debug("Create one todo with string test1.")
+            browserGeb.at(TodosPage).addOneItem(test1)
+            logger.debug("Note the item number.")
+            todoNum = browserGeb.at(TodosPage).getTodosNum()
+        }
+        logger.debug("Shut the WebDriver.")
+        browserGeb.close()
+        logger.debug("Launch the WebDriver")
+        browserGeb = new Browser(driver: new RemoteWebDriver(urlInstance, test))
+        browserGeb.to TodosPage
+        logger.debug("title: " + browserGeb.title)
+        logger.debug("Edit the todo item test1.")
+        Assert.assertTrue(browserGeb.at(TodosPage).editItemByLabel(test1, test3))
+        logger.debug("Verify the todo item shows up.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test3) != null)
+        logger.debug("Verify the todo item number is the same.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getTodosNum() == todoNum)
+    }
+
+    @Parameters(["browser",  "nodeUrl"])
+    @Test(groups = "Deletion")
+    void todoDeletOneItemTest(String browser, String nodeUrl) {
+        String nodeX = nodeUrl.substring(Math.max(nodeUrl.length() - 2, 0))
+        String browserNode = browser+nodeX
+        URL urlInstance = null
+        logger.debug("run test on " + browserNode)
+        browserGeb.to TodosPage
+        logger.debug("title: " + browserGeb.title)
+        int todoNum
+        logger.debug("If todo item test1 not existing, create it.")
+        if (browserGeb.at(TodosPage).getItemByLabel(test1) == null){
+            logger.debug("Create one todo with string test1.")
+            browserGeb.at(TodosPage).addOneItem(test1)
+        }
+        logger.debug("Note the item number.")
+        todoNum = browserGeb.at(TodosPage).getTodosNum()
+
+        logger.debug("Delete the todo item test1.")
+        Assert.assertTrue(browserGeb.at(TodosPage).deletOneItemByLabel(test1))
+        logger.debug("Verify the todo item does not shows up.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test1) == null)
+        logger.debug("Verify the todo item number is decreased by 1.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getTodosNum() == todoNum-1)
+    }
+
+    @Parameters(["browser",  "nodeUrl"])
+    @Test(groups = "Deletion")
+    void todoDeletMultiItemsTest(String browser, String nodeUrl) {
+        String nodeX = nodeUrl.substring(Math.max(nodeUrl.length() - 2, 0))
+        String browserNode = browser+nodeX
+        URL urlInstance = null
+        logger.debug("run test on " + browserNode)
+        browserGeb.to TodosPage
+        logger.debug("title: " + browserGeb.title)
+        int todoNum
+        logger.debug("If todo item test1 not existing, create it.")
+        if (browserGeb.at(TodosPage).getItemByLabel(test1) == null){
+            logger.debug("Create one todo with string test1.")
+            browserGeb.at(TodosPage).addOneItem(test1)
+        }
+        logger.debug("If todo item test2 not existing, create it.")
+        if (browserGeb.at(TodosPage).getItemByLabel(test2) == null){
+            logger.debug("Create one todo with string test1.")
+            browserGeb.at(TodosPage).addOneItem(test2)
+        }
+        logger.debug("If todo item test3 not existing, create it.")
+        if (browserGeb.at(TodosPage).getItemByLabel(test3) == null){
+            logger.debug("Create one todo with string test1.")
+            browserGeb.at(TodosPage).addOneItem(test3)
+        }
+        logger.debug("Note the item number.")
+        todoNum = browserGeb.at(TodosPage).getTodosNum()
+        String[] items = [test1,test2,test3]
+        logger.debug("Pick the todo items test1, test2, test3.")
+        Assert.assertTrue(browserGeb.at(TodosPage).pickMultiItemsByLabel(items))
+        logger.debug("Delete the picked todo items test1, test2, test3.")
+        browserGeb.at(TodosPage).clikcClearCompleted()
+        logger.debug("Verify the deleted todo item does not shows up.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test1) == null)
+        logger.debug("test1 deleted.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test2) == null)
+        logger.debug("test2 deleted.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getItemByLabel(test3) == null)
+        logger.debug("test3 deleted.")
+        logger.debug("Verify the todo item number is decreased by 3.")
+        Assert.assertTrue(browserGeb.at(TodosPage).getTodosNum() == todoNum-3)
     }
 }
