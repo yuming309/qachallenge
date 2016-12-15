@@ -25,13 +25,9 @@ class GebBaseTest {
     protected String nodeX
     protected String browserNode
 
-    @Override
     protected void oneTimeSetup(){}
-    @Override
-    protected void oneTimeTeardown(){}
-    @Override
+    protected void oneTimeTearDown(){}
     protected void setUp(){}
-    @Override
     protected void cleanUp(){}
 
 
@@ -42,7 +38,7 @@ class GebBaseTest {
 
     @AfterClass
     protected void afterClass(){
-        oneTimeTeardown()
+        oneTimeTearDown()
     }
 
     @Parameters(["browser", "nodeUrl", "webSite"])
@@ -101,5 +97,6 @@ class GebBaseTest {
         browserGeb.close()
         logger.comment(browser + " Webdriver stops.")
     }
+
 
 }
