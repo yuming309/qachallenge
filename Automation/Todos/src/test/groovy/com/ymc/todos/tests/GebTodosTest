@@ -18,9 +18,7 @@ class GebTodosTest extends GebBaseTest {
     protected String test2 = "test2"
     protected String test3 = "test3"
     protected String test4 = "test4"
-    protected String test5 = "test5"
-    protected String test6 = "test6"
-    protected String test7 = "test7"
+    
     @Override
     protected void oneTimeSetup(){}
     @Override
